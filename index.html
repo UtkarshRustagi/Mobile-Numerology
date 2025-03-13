@@ -36,6 +36,8 @@
     <p id="neutralOutput"></p>
     <h3>Sum of Digits</h3>
     <p id="sumOutput" class="black"></p>
+    <h3>The Final Sum</h3>
+    <p id="finalSumOutput" class="black"></p>
 
     <script>
         const redPairs = ["14", "41", "16", "61", "18", "81", "26", "62", "27", "72", "28", "82", "34", "43", "45", "54", "46", "64", "48", "84", "67", "76", "68", "86"];
@@ -65,14 +67,13 @@
                 }
             }
 
-            while (sum >= 10) {
-                sum = String(sum).split('').reduce((acc, num) => acc + Number(num), 0);
-            }
+            const finalSum = sum > 9 ? Math.floor(sum / 10) + (sum % 10) : sum;
 
             document.getElementById("redOutput").innerHTML = redOutput.slice(0, -29);
             document.getElementById("greenOutput").innerHTML = greenOutput.slice(0, -29);
             document.getElementById("neutralOutput").innerHTML = neutralOutput.slice(0, -29);
             document.getElementById("sumOutput").innerText = `Sum of digits: ${sum}`;
+            document.getElementById("finalSumOutput").innerText = `Final Sum: ${finalSum}`;
         }
     </script>
 </body>
