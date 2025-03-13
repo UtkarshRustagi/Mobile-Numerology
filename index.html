@@ -26,15 +26,15 @@
     </style>
 </head>
 <body>
-    <h2>Enter a 10-digit phone number:</h2>
+    <h2>Enter a 10-digit phone number</h2>
     <input type="text" id="phoneNumber" maxlength="10" oninput="highlightPairs()">
-    <h3>Red Highlighted Pairs:</h3>
+    <h3>Red Highlighted Pairs</h3>
     <p id="redOutput"></p>
-    <h3>Green Highlighted Pairs:</h3>
+    <h3>Green Highlighted Pairs</h3>
     <p id="greenOutput"></p>
-    <h3>Neutral Highlighted Pairs:</h3>
+    <h3>Neutral Highlighted Pairs</h3>
     <p id="neutralOutput"></p>
-    <h3>Sum of Digits:</h3>
+    <h3>Sum of Digits</h3>
     <p id="sumOutput" class="black"></p>
 
     <script>
@@ -63,6 +63,10 @@
                         neutralOutput += `<span class="neutral">${pair}</span><span class="spaced-comma">,</span>`;
                     }
                 }
+            }
+
+            while (sum >= 10) {
+                sum = String(sum).split('').reduce((acc, num) => acc + Number(num), 0);
             }
 
             document.getElementById("redOutput").innerHTML = redOutput.slice(0, -29);
