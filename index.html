@@ -18,7 +18,13 @@
         .neutral { color: blue; }
         .black { color: black; }
         .spaced-comma { color: black; margin: 0 5px; }
-        input, h2, h3 {
+        input {
+            background: #d3d3d3; /* Lighter grey background */
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        h2, h3 {
             background: rgba(0, 0, 0, 0.7);
             padding: 10px;
             border-radius: 10px;
@@ -26,17 +32,19 @@
     </style>
 </head>
 <body>
-    <h2>Enter a 10-digit phone number</h2>
+    <h2>Enter a 10-digit phone number:</h2>
     <input type="text" id="phoneNumber" maxlength="10" oninput="highlightPairs()">
-    <h3>Malefic Pairs</h3>
+    <h3>Number without Zeros:</h3>
+    <p id="numberWithoutZero" class="black"></p>
+    <h3>Red Highlighted Pairs:</h3>
     <p id="redOutput"></p>
-    <h3>Good Pairs</h3>
+    <h3>Green Highlighted Pairs:</h3>
     <p id="greenOutput"></p>
     <h3>Neutral Highlighted Pairs:</h3>
     <p id="neutralOutput"></p>
-    <h3>Sum of Digits</h3>
+    <h3>Sum of Digits:</h3>
     <p id="sumOutput" class="black"></p>
-    <h3>The Final Sum</h3>
+    <h3>The Final Sum:</h3>
     <p id="finalSumOutput" class="black"></p>
 
     <script>
@@ -46,17 +54,20 @@
 
         function highlightPairs() {
             const phoneNumber = document.getElementById("phoneNumber").value;
+            const numberWithoutZero = phoneNumber.replace(/0/g, '');
+            document.getElementById("numberWithoutZero").innerText = numberWithoutZero;
+
             let redOutput = "";
             let greenOutput = "";
             let neutralOutput = "";
             let sum = 0;
 
-            for (let i = 0; i < phoneNumber.length; i++) {
-                const digit = Number(phoneNumber[i]);
+            for (let i = 0; i < numberWithoutZero.length; i++) {
+                const digit = Number(numberWithoutZero[i]);
                 if (!isNaN(digit)) sum += digit;
 
-                if (i < phoneNumber.length - 1) {
-                    const pair = phoneNumber.slice(i, i + 2);
+                if (i < numberWithoutZero.length - 1) {
+                    const pair = numberWithoutZero.slice(i, i + 2);
                     if (redPairs.includes(pair)) {
                         redOutput += `<span class="red">${pair}</span>`;
                         if (pair === "14" || pair === "41") {
