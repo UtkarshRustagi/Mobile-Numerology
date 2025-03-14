@@ -29,23 +29,37 @@
             padding: 10px;
             border-radius: 10px;
         }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .input-box, .output-box {
+            margin: 0 10px;
+        }
+        .output-box {
+            background: #d3d3d3; /* Matching input box background */
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 150px;
+        }
     </style>
 </head>
 <body>
-    <h2>Enter a 10-digit phone number</h2>
-    <input type="text" id="phoneNumber" maxlength="10" oninput="highlightPairs()">
-    <h3>Number without Zeros</h3>
-    <p id="numberWithoutZero" class="black"></p>
-    <h3>Malefic Pairs</h3>
+    <h2>Enter a 10-digit phone number:</h2>
+    <div class="container">
+        <input type="text" id="phoneNumber" maxlength="10" oninput="highlightPairs()">
+        <div class="output-box" id="numberWithoutZero"></div>
+        <div class="output-box" id="sumOfDigits"></div>
+        <div class="output-box" id="finalSumBox"></div>
+    </div>
+    <h3>Red Highlighted Pairs:</h3>
     <p id="redOutput"></p>
-    <h3>Good Pairs</h3>
+    <h3>Green Highlighted Pairs:</h3>
     <p id="greenOutput"></p>
-    <h3>Neutral Pairs</h3>
+    <h3>Neutral Highlighted Pairs:</h3>
     <p id="neutralOutput"></p>
-    <h3>Sum of Digits</h3>
-    <p id="sumOutput" class="black"></p>
-    <h3>The Final Sum</h3>
-    <p id="finalSumOutput" class="black"></p>
 
     <script>
         const redPairs = ["14", "41", "16", "61", "18", "81", "26", "62", "27", "72", "28", "82", "34", "43", "45", "54", "46", "64", "48", "84", "67", "76", "68", "86", "23", "32"];
@@ -99,8 +113,8 @@
             document.getElementById("redOutput").innerHTML = redOutput.slice(0, -29);
             document.getElementById("greenOutput").innerHTML = greenOutput.slice(0, -29);
             document.getElementById("neutralOutput").innerHTML = neutralOutput.slice(0, -29);
-            document.getElementById("sumOutput").innerText = `Sum of digits: ${sum}`;
-            document.getElementById("finalSumOutput").innerText = `Final Sum: ${finalSum}`;
+            document.getElementById("sumOfDigits").innerText = sum;
+            document.getElementById("finalSumBox").innerText = finalSum;
         }
     </script>
 </body>
